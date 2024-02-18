@@ -62,12 +62,3 @@ Dưới đây là danh sách các lớp trong mô hình OSI:
 
 > Mỗi lớp trong mô hình OSI có chức năng riêng biệt nhưng cũng tương tác với nhau để thực hiện quá trình truyền thông mạng. Các lớp cung cấp một cấu trúc tổ chức cho việc phân chia và quản lý các nhiệm vụ và chức năng trong một máy tính
 
-# Tại sao mô hình OSI lại quan trọng ?
-
-- Các lớp của mô hình OSI tóm lược mọi loại hình giao tiếp mạng trên cả thành phần phần mềm và phần cứng. Mô hình này được thiết kế để cho phép 2 hệ thống độc lập giao tiếp với nhau thông qua các giao diện hoặc giao thức được chuẩn hóa dựa trên lớp hoạt động hiện tại
-
-- Tiếp theo là những lợi ích của mô hình OSI
-
-### Hiểu biết chung về những hệ thống phức tạp 
-
-- Các kỹ sư có thể sử dụng mô hình OSI 
