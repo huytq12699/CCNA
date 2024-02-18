@@ -42,9 +42,11 @@ Cụ thể, OSPF được kích hoạt trên mạng con `192.168.1.0/24`, `10.0.
 3. Sau khi hoàn thành cấu hình, chúng ta thoát khỏi chế độ cấu hình và lưu cấu hình vào bộ nhớ `non-volatile` với lệnh `copy running-config startup-config`
 
 - Cấu hình quảng bá một tuyến mặc định (default) trong OSPF 
+
 `Router(config-router)#default-information originate`
 
 - Cấu hình quảng bá một tuyến khác (không phải là default) 
+
 `Router(config-router)#redistribute protocols subnets`
 
 ## Các lệnh kiểm tra cấu hình

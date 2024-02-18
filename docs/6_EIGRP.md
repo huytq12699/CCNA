@@ -16,12 +16,35 @@ EIGRP được phát triển bởi Cisco và là một phần của giao thức 
 ## Cấu hình EIGRP
 
 1. Cấu hình cơ bản
+
 ```sh 
 Router(config)#router eigrp eigrp_muốn_đặt ( 1->65535) 
 Router(config-router)#network IP_mạng_muốn_quảng_bá 
 Router(config-router)#no auto-summary (ko tự ghép các dải địa chỉ IP thành 1 dải lớn)
 ``` 
-2. Thay đổi băng thông và tự tổng hợp tuyến trong interface 
+
+- Ví dụ:
+```sh
+Router(config)# router eigrp 100                          // Bắt đầu cấu hình EIGRP, số 100 là Autonomous System (AS) number
+Router(config-router)# network 192.168.1.0                // Kích hoạt EIGRP trên mạng con 192.168.1.0
+Router(config-router)# network 10.0.0.0                   // Kích hoạt EIGRP trên mạng con 10.0.0.0
+Router(config-router)# network 172.16.0.0                  // Kích hoạt EIGRP trên mạng con 172.16.0.0
+Router(config-router)# no auto-summary 				//(ko tự ghép các dải địa chỉ IP thành 1 dải lớn)
+Router(config-router)# exit                                // Thoát khỏi chế độ cấu hình EIGRP
+Router(config)# exit                                        // Thoát khỏi chế độ cấu hình
+Router# copy running-config startup-config                   // Lưu cấu hình vào bộ nhớ non-volatile
+```
+
+> Ở ví dụ trên:
+
++ Chúng ta bắt đầu bằng việc vào chế độ cấu hình EIGRP với lệnh `router eigrp 100`, trong đó "100" là Autonomous System (AS) number của EIGRP.
+
++ Bằng cách sử dụng lệnh `network`, chúng ta kích hoạt EIGRP trên các mạng con cụ thể. Cụ thể, EIGRP được kích hoạt trên mạng con `192.168.1.0`, `10.0.0.0` và `172.16.0.0`.
+
++ Sau khi hoàn thành cấu hình, chúng ta thoát khỏi chế độ cấu hình và lưu cấu hình vào bộ nhớ `non-volatile` với lệnh `copy running-config startup-config`
+
+2. Thay đổi băng thông và tự tổng hợp tuyến trong interface
+
 ```sh
 Router(config-if)#bandwidth kilobits 
 Router(config-if)#ip summary-address protocol AS network number subnets mask 
@@ -29,9 +52,10 @@ Router(config-if)#ip summary-address protocol AS network number subnets mask
 
 3. Cân bằng tải trong EIGRP
  
-`Router(config-router)#variance number`
+	`Router(config-router)#variance number`
 
-4. Quảng bá default route 
+4. Quảng bá default route
+
 - Cách 1:  
 `Router(config)#ip route 0.0.0.0 0.0.0.0 [interface/nexthop]` 
 `Router(config)#redistribute static`
@@ -39,8 +63,8 @@ Router(config-if)#ip summary-address protocol AS network number subnets mask
 - Cách 2:  
 `Router(config)#ip default-network network number`
 
-- Cách 3: 
-`Router(config-if)#ip summary-network eigrp AS number 0.0.0.0 0.0.0.0 `
+- Cách 3:  
+`Router(config-if)#ip summary-network eigrp AS number 0.0.0.0 0.0.0.0`
  
 5. Quảng bá các tuyến khác trong EIGRP (không phải là default)
 
@@ -50,7 +74,7 @@ Router(config-if)#ip summary-address protocol AS network number subnets mask
 ```
 6. Chia sẻ traffic trong EIGRP
 
-`Router(config-router)#traffic share {balanced/min}`
+	`Router(config-router)#traffic share {balanced/min}`
 
 ## Các lệnh kiểm tra cấu hình EIGRP
 
