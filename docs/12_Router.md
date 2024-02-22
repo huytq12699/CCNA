@@ -1,10 +1,10 @@
 # Router
 
-1. Mục đích chính: 
+## Mục đích chính
 
 - Router là một thiết bị mạng được sử dụng để kết nối hai hoặc nhiều mạng khác nhau với nhau. Chức năng chính của router là chuyển tiếp gói dữ liệu giữa các mạng và quyết định tuyến đường tốt nhất cho gói dữ liệu.
 
-2. Chức năng: 
+## Chức năng
 
 Router thực hiện nhiều chức năng quan trọng trong mạng, bao gồm:
 

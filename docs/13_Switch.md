@@ -1,10 +1,10 @@
 # Switch
 
-1. Mục đích chính: 
+## Mục đích chính 
 
 - Switch là một thiết bị mạng được sử dụng để kết nối các thiết bị mạng như máy tính, máy chủ, và các thiết bị mạng khác trong một mạng cục bộ (LAN). Chức năng chính của switch là chuyển tiếp dữ liệu từ một cổng đến một hoặc nhiều cổng khác dựa trên địa chỉ MAC.
 
-2. Chức năng: 
+## Chức năng 
 
 Switch thực hiện nhiều chức năng quan trọng trong mạng, bao gồm:
 
