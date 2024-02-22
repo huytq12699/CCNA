@@ -62,7 +62,7 @@ neighbor <IP_address> next-hop-self		//Chỉ định Next Hop Self
 neighbor <IP_address> send-community	//Cho phép router gửi thông tin BGP Community cho neighbor
 ```
 
-### Lệnh kiểm tra cấu hình
+## Lệnh kiểm tra cấu hình
 
 - Hiển thị chi tiết cấu hình BGP
 
