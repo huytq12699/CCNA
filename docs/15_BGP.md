@@ -1,6 +1,6 @@
 # BGP (Border Gateway Protocol)
 
-1. Một số khái niệm cơ bản
+## Một số khái niệm cơ bản
 
 - BGP (Border Gateway Protocol) là một giao thức định tuyến được sử dụng để trao đổi thông tin định tuyến giữa các mạng lớn trên internet.
 
@@ -32,7 +32,7 @@
 
 - BGP Route Reflectors: Các máy chủ được cấu hình để phản ánh thông tin định tuyến giữa các peer trong cùng một AS, giúp giảm bớt khối lượng thông tin định tuyến.
 
-2. Cấu hình BGP
+## Cấu hình BGP
 
 - Cấu hình cơ bản
 
@@ -62,7 +62,7 @@ neighbor <IP_address> next-hop-self		//Chỉ định Next Hop Self
 neighbor <IP_address> send-community	//Cho phép router gửi thông tin BGP Community cho neighbor
 ```
 
-3. Lệnh kiểm tra cấu hình
+### Lệnh kiểm tra cấu hình
 
 - Hiển thị chi tiết cấu hình BGP
 
