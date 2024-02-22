@@ -34,6 +34,8 @@
 
 2. Cấu hình BGP
 
+- Cấu hình cơ bản
+
 ```sh
 
 router bgp <AS_number>	//Bắt đầu quá trình BGP
@@ -43,10 +45,50 @@ neighbor <IP_address> remote-as <remote_AS_number>	//Thiết lập kết nối v
 
 ```
 
+- Sử dụng loopback làm địa chỉ nguồn cho BGP
 
+```sh
 neighbor <IP_address> update-source loopback<number>	//Sử dụng loopback làm địa chỉ nguồn cho BGP
+```
+- Chỉ định Next Hop Self
+
+```sh
 neighbor <IP_address> next-hop-self		//Chỉ định Next Hop Self
+```
+
+- Chỉ định BGP Community
+
+```sh
 neighbor <IP_address> send-community	//Cho phép router gửi thông tin BGP Community cho neighbor
+```
 
+3. Lệnh kiểm tra cấu hình
 
+- Hiển thị chi tiết cấu hình BGP
+
+```sh 
+show ip bgp
+```
+- Kiểm tra thông tin về một neighbor cụ thể
+
+```sh
+show ip bgp neighbor <neighbor_IP_address>
+```
+
+- Hiển thị tóm tắt cấu hình BGP
+
+```sh
+show running-config | section router bgp
+```
+
+- Hiển thị tóm tắt các neighbor BGP
+
+```sh
+show ip bgp summary
+```
+
+- Kiểm tra thông tin về các prefix cụ thể
+
+```sh
+show ip bgp <prefix>
 ```
