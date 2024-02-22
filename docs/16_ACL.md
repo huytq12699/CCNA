@@ -14,25 +14,19 @@
 
 	- `Extended ACL`: Kiểm soát truy cập dựa trên nhiều yếu tố như địa chỉ IP nguồn và đích, cổng TCP/UDP, giao thức, v.v., cung cấp khả năng kiểm soát linh hoạt hơn.
 
-2. Cách áp dụng: 
-
-- ACL được áp dụng tại cổng (interface) của router hoặc firewall, quyết định xem gói tin dữ liệu sẽ được chấp nhận, từ chối hoặc chuyển hướng.
+2. Cách áp dụng: ACL được áp dụng tại cổng (interface) của router hoặc firewall, quyết định xem gói tin dữ liệu sẽ được chấp nhận, từ chối hoặc chuyển hướng.
 
 3. Cấu trúc quy tắc ACL:
 
 - Mỗi quy tắc ACL bao gồm một số điều kiện (hoặc điều kiện phủ định) và một hành động.
 
-	- Điều kiện: Xác định các yếu tố để so sánh với các gói tin dữ liệu, chẳng hạn như địa chỉ IP nguồn/đích, cổng, giao thức, v.v.
+	- `Điều kiện`: Xác định các yếu tố để so sánh với các gói tin dữ liệu, chẳng hạn như địa chỉ IP nguồn/đích, cổng, giao thức, v.v.
 
-	- Hành động: Xác định hành động sẽ được thực hiện nếu gói tin khớp với điều kiện, chẳng hạn như chấp nhận (permit), từ chối (deny) hoặc chuyển hướng (đối với firewall).
+	- `Hành động`: Xác định hành động sẽ được thực hiện nếu gói tin khớp với điều kiện, chẳng hạn như chấp nhận (permit), từ chối (deny) hoặc chuyển hướng (đối với firewall).
 
-4. Thứ tự ưu tiên
+4. Thứ tự ưu tiên: Quy tắc trong ACL được áp dụng tuần tự từ trên xuống dưới, vì vậy thứ tự của chúng rất quan trọng. Khi một gói tin khớp với một quy tắc, các quy tắc sau không được xem xét nữa (nếu không có ánh xạ ngoại lệ được cấu hình).
 
-- Quy tắc trong ACL được áp dụng tuần tự từ trên xuống dưới, vì vậy thứ tự của chúng rất quan trọng. Khi một gói tin khớp với một quy tắc, các quy tắc sau không được xem xét nữa (nếu không có ánh xạ ngoại lệ được cấu hình).
-
-5. Mục đích sử dụng:
-
-- ACL được sử dụng để cung cấp bảo mật mạng, kiểm soát lưu lượng truy cập, triển khai chính sách và quản lý tài nguyên mạng.
+5. Mục đích sử dụng: ACL được sử dụng để cung cấp bảo mật mạng, kiểm soát lưu lượng truy cập, triển khai chính sách và quản lý tài nguyên mạng.
 
 ## Cấu hình ACL
 
@@ -45,7 +39,7 @@ ip access-list <number> {standard | extended}
 2. Thêm quy tắc vào ACL
 
 ```sh
-permit|deny {source|destination} [source_address] [wildcard_mask] [destination_address] [wildcard_mask] [protocol] [operator port]
+permit|deny [source_address] [wildcard_mask] [destination_address] [wildcard_mask] [protocol] [operator port]
 ```
 
 3. Áp dụng ACL
@@ -64,11 +58,15 @@ Router(config-ext-nacl)# deny ip 192.168.1.0 0.0.0.255 any
 Router(config)# interface G0/0
 Router(config-if)# ip access-group BLOCK_TRAFFIC in
 ```
-> Trong đó: 
-	- `deny`: Từ chối các gói tin có địa chỉ nguồn từ mạng con 192.168.1.0/24 và đích là bất kỳ nơi nào.
-	- `ip`: Xác định loại gói tin là IPv4.
-	- `192.168.1.0 0.0.0.255`: Địa chỉ mạng và mask của mạng con cần từ chối.
-	- `any`: Áp dụng cho tất cả các địa chỉ đích.
+> Trong đó:
+
+- `deny`: Từ chối các gói tin có địa chỉ nguồn từ mạng con 192.168.1.0/24 và đích là bất kỳ nơi nào.
+
+- `ip`: Xác định loại gói tin là IPv4.
+
+- `192.168.1.0 0.0.0.255`: Địa chỉ mạng và mask của mạng con cần từ chối.
+
+- `any`: Áp dụng cho tất cả các địa chỉ đích.
 
 > Điều này sẽ từ chối tất cả lưu lượng truy cập từ mạng con 192.168.1.0/24 vào cổng vào của router.
 
