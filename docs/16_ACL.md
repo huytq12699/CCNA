@@ -33,13 +33,17 @@
 1. Tạo ACL
 
 ```sh
-ip access-list <number> {standard | extended}
+access-list <number> [permit | deny] [IP source_address] [wildcard_mask]
+
+or 
+
+ip access-list standard <name> [permit | deny] [IP source_address] [wildcard_mask]
 ```
 
 2. Thêm quy tắc vào ACL
 
 ```sh
-permit|deny [source_address] [wildcard_mask] [destination_address] [wildcard_mask] [protocol] [operator port]
+permit|deny [source_address] [wildcard_mask] [destination_address] [wildcard_mask] [protocol] [port]
 ```
 
 3. Áp dụng ACL
@@ -50,41 +54,61 @@ ip access-group {<number> | <name>} {in | out}
 ```
 4. Ví dụ
 
-Giả sử bạn muốn tạo một ACL để từ chối lưu lượng truy cập từ một mạng con cụ thể vào một cổng cụ thể của router.
+- Cấu hình Standard Access-list 
 
 ```sh
-Router(config)# ip access-list extended BLOCK_TRAFFIC
-Router(config-ext-nacl)# deny ip 192.168.1.0 0.0.0.255 any
-Router(config)# interface G0/0
-Router(config-if)# ip access-group BLOCK_TRAFFIC in
+Router(config)#access-list 1 deny 172.16.0.0 0.0.255.255 
+Router(config)#access-list 1 permit any 
+Router(config)#interface fastethernet 0/0 
+Router(config-in)#ip access-group in 
 ```
-> Trong đó:
 
-- `deny`: Từ chối các gói tin có địa chỉ nguồn từ mạng con 192.168.1.0/24 và đích là bất kỳ nơi nào.
+- Cấu hình Extended Access-list
 
-- `ip`: Xác định loại gói tin là IPv4.
+```sh
+Router(config)#access-list 101 deny tcp 172.16.0.0 0.0.255.255 host 192.168.1.1 eq telnet 
+Router(config)#access-list 101 deny tcp 172.16.0.0 0.0.255.255 host 192.168.1.2 eq ftp 
+Router(config)#access-list 101 permit any any 
+Router(config)#interface fastethernet 0/0 
+Router(config-int)#ip access-group out 
+```
 
-- `192.168.1.0 0.0.0.255`: Địa chỉ mạng và mask của mạng con cần từ chối.
+- Cấu hình named ACL thay cho các số hiệu
 
-- `any`: Áp dụng cho tất cả các địa chỉ đích.
+```sh
+Router(config)#ip access-list extended <name> (tên của access-list) 
+Router(config-ext-nacl)#permit tcp any host 192.168.1.3 eq telnet 
+Router(config)#interface fastethernet 0/0 
+Router(config-int)#ip access-group <name> out 
+```
 
-> Điều này sẽ từ chối tất cả lưu lượng truy cập từ mạng con 192.168.1.0/24 vào cổng vào của router.
+5. Xóa ACL
 
+```sh
+Router(config)# no ip access-list id
+```
+
+6. Lưu ý
+
+- Mặc định của tất cả Access-list là `deny all`, vì vậy trong tất cả các access-list tối thiểu phải có `1 lệnh permit`. Nếu trong access-list có cả permit và deny thì nên để các dòng lệnh permit bên trên.
+
+- Về hướng của access-list (In/Out) khi áp dụng vào cổng có thể hiểu đơn giản là: `In` là từ host, `Out` là tới host 
+hay `In` vào trong Router, còn `Out` là ra khỏi Router.
+
+- Đối với `IN router` kiểm tra gói tin trước khi nó được đưa tới bảng xử lý. Đối với `OUT`, router kiểm tra gói tin sau khi nó vào bảng xử lý. 
+
+- Wildcard mask được tính bằng công thức:
+
+```sh
+Wildcard_mask = 255.255.255.255 – Subnet mask (Áp dụng cho cả Classful và Classless addreess) 
+--> 0.0.0.0 255.255.255.255 = any. 
+--> Ip address 0.0.0.0 = host ip address (chỉ định từng host một ) 
+```
 ## Lệnh kiểm tra cấu hình
 
 1. `show ip access-lists`: Lệnh này sẽ hiển thị danh sách tất cả các ACL cùng với các quy tắc được định nghĩa bên trong chúng, bao gồm số hiệu ACL, loại ACL (standard hoặc extended), và chi tiết các quy tắc bao gồm điều kiện và hành động.
 
 2. `show access-lists`: Lệnh này cũng sẽ hiển thị danh sách tất cả các ACL cùng với các quy tắc được định nghĩa bên trong chúng, tương tự như `show ip access-lists`. Tùy thuộc vào phiên bản IOS cụ thể, bạn có thể cần sử dụng lệnh này thay vì `show ip access-lists`.
 
-3. Ví dụ: Bạn tạo một ACL như ví dụ mục 4 ở trên và muốn kiểm tra cấu hình của nó, bạn có thể sử dụng lệnh:
-
-```sh
-Router# show ip access-lists BLOCK_TRAFFIC
-```
-hoặc
-
-```sh
-Router# show access-lists BLOCK_TRAFFIC
-```
 
 
