@@ -20,7 +20,7 @@
 
 ==> Cài đặt và quản lý VLAN thường được thực hiện thông qua thiết bị mạng như switch hoặc router, nơi bạn có thể cấu hình cổng để thuộc về một hoặc nhiều VLAN.
 
-## VLAN-ID
+## VLAN ID
 
 - VLAN ID (Identifier) là một số nguyên dương dùng để định danh và phân biệt các VLAN khác nhau trên mạng. Mỗi VLAN sẽ được gán một VLAN ID duy nhất để phân biệt nó với các VLAN khác trong hệ thống.
 
@@ -73,7 +73,7 @@
 	switch(config-if-range)# switchport mode access
 	switch(config-if-range)# switchport access vlan 10
 ```
-> Trong đó:
+- Trong đó:
 
 	+ `interface range fa0/1 - 2` cho phép bạn chọn một dãy các cổng (trong trường hợp này là cổng 1 và 2). 
 

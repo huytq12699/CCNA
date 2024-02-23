@@ -2,7 +2,7 @@
 
 ## Một số khái niệm
 
-- VLAN trunking là một tính năng quan trọng trong các mạng có nhiều VLAN, cho phép các dữ liệu từ nhiều VLAN được truyền qua một liên kết vật lý. 
+- `VLAN trunking` là một tính năng quan trọng trong các mạng có nhiều VLAN, cho phép các dữ liệu từ nhiều VLAN được truyền qua một liên kết vật lý. 
 Điều này giúp tối ưu hóa băng thông và cho phép các thiết bị mạng khác nhau truy cập vào các VLAN khác nhau.
 
 - `Trunk port`: Là một cổng trên switch được cấu hình để truyền dữ liệu từ nhiều VLAN khác nhau. Các gói dữ liệu trên trunk port thường được gắn thêm thông tin về VLAN (VLAN tagging) để switch hoặc thiết bị mạng khác có thể phân biệt chúng.
@@ -41,11 +41,11 @@
 	Switch(config-if)# switchport trunk allowed vlan <vlan_list>   //Xác định các VLAN được phép truyền qua(tùy chọn)
 ```
 
-> Trong đó:
+- Trong đó:
 
-	- <interface_name>: Tên của cổng mà bạn muốn cấu hình là Trunk, ví dụ: GigabitEthernet0/1.
+	+ `<interface_name>`: Tên của cổng mà bạn muốn cấu hình là Trunk, ví dụ: GigabitEthernet0/1.
 
-	- <vlan_list>: Danh sách các VLAN được phép truyền qua cổng Trunk, có thể là một hoặc nhiều VLAN, hoặc cả tất cả các VLAN.
+	+ `<vlan_list>`: Danh sách các VLAN được phép truyền qua cổng Trunk, có thể là một hoặc nhiều VLAN, hoặc cả tất cả các VLAN.
 
 - Ví dụ
 
@@ -61,11 +61,11 @@
 
 - Native VLAN là VLAN mặc định được sử dụng trên một liên kết trunk để truyền các gói dữ liệu không được gắn thẻ VLAN. Trong một cài đặt mạng VLAN, các gói dữ liệu được gắn thẻ VLAN thông thường được truyền qua các liên kết trunk với thông tin về VLAN ID được gắn vào header của gói dữ liệu. Tuy nhiên, có những trường hợp khi gói dữ liệu không được gắn thẻ VLAN, thì chúng sẽ được gửi qua mạng. Đây là lúc mà VLAN mặc định, hay Native VLAN, được sử dụng.
 
-- Đặc điểm quan trọng: Native VLAN quan trọng trong môi trường mạng VLAN, vì nó đảm bảo việc truyền thông giữa các thiết bị trên mạng diễn ra một cách chính xác.
+- `Đặc điểm quan trọng`: Native VLAN quan trọng trong môi trường mạng VLAN, vì nó đảm bảo việc truyền thông giữa các thiết bị trên mạng diễn ra một cách chính xác.
 
-- Mặc định và cấu hình: Native VLAN thường được đặt là VLAN 1, nhưng bạn có thể thay đổi nó thành bất kỳ VLAN nào bạn muốn. Bạn cũng cần đảm bảo rằng Native VLAN được cấu hình giống nhau trên tất cả các thiết bị trong cùng một liên kết trunk.
+- `Mặc định và cấu hình`: Native VLAN thường được đặt là VLAN 1, nhưng bạn có thể thay đổi nó thành bất kỳ VLAN nào bạn muốn. Bạn cũng cần đảm bảo rằng Native VLAN được cấu hình giống nhau trên tất cả các thiết bị trong cùng một liên kết trunk.
 
-- Bảo mật: Bạn nên chú ý đến bảo mật của Native VLAN, vì các tấn công như VLAN hopping có thể xảy ra khi một hacker sử dụng thông tin về Native VLAN để truy cập các VLAN khác trên mạng.
+- `Bảo mật`: Bạn nên chú ý đến bảo mật của Native VLAN, vì các tấn công như VLAN hopping có thể xảy ra khi một hacker sử dụng thông tin về Native VLAN để truy cập các VLAN khác trên mạng.
 
 2. Cấu hình
 
