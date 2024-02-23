@@ -5,34 +5,35 @@
 EIGRP được phát triển bởi Cisco và là một phần của giao thức định tuyến nội bộ của Cisco.
 
 - Một số điểm nổi bật về EIGRP bao gồm:
-	+ Tính linh hoạt và hiệu quả: EIGRP sử dụng thuật toán DUAL (Diffusing Update Algorithm) để đảm bảo định tuyến tốt nhất và lựa chọn con đường tốt nhất cho việc truyền tải dữ liệu. Nó cũng hỗ trợ nhiều phương thức kết nối như Ethernet, Frame Relay và ATM.
 
-	+ Convergence nhanh: EIGRP cung cấp thời gian hội tụ (convergence) nhanh hơn so với một số giao thức khác như RIP (Routing Information Protocol) hay OSPF (Open Shortest Path First), giúp đảm bảo rằng mạng có thể chịu được sự thay đổi cấu trúc nhanh chóng.
+	+ `Tính linh hoạt và hiệu quả`: EIGRP sử dụng thuật toán DUAL (Diffusing Update Algorithm) để đảm bảo định tuyến tốt nhất và lựa chọn con đường tốt nhất cho việc truyền tải dữ liệu. Nó cũng hỗ trợ nhiều phương thức kết nối như Ethernet, Frame Relay và ATM.
 
-	+ Thiết kế cho mạng lớn và phức tạp: EIGRP được thiết kế để hoạt động hiệu quả trên các mạng lớn và phức tạp, với khả năng chia nhỏ mạng thành các vùng định tuyến riêng biệt để quản lý mạng lưới lớn hơn.
+	+ `Convergence nhanh`: EIGRP cung cấp thời gian hội tụ (convergence) nhanh hơn so với một số giao thức khác như RIP (Routing Information Protocol) hay OSPF (Open Shortest Path First), giúp đảm bảo rằng mạng có thể chịu được sự thay đổi cấu trúc nhanh chóng.
 
-	+ Bảo mật: EIGRP cung cấp các cơ chế bảo mật như xác thực mật khẩu để ngăn chặn các cuộc tấn công giả mạo hoặc xâm nhập vào hệ thống định tuyến.
+	+ `Thiết kế cho mạng lớn và phức tạp`: EIGRP được thiết kế để hoạt động hiệu quả trên các mạng lớn và phức tạp, với khả năng chia nhỏ mạng thành các vùng định tuyến riêng biệt để quản lý mạng lưới lớn hơn.
+
+	+ `Bảo mật`: EIGRP cung cấp các cơ chế bảo mật như xác thực mật khẩu để ngăn chặn các cuộc tấn công giả mạo hoặc xâm nhập vào hệ thống định tuyến.
 
 ## Cấu hình EIGRP
 
 1. Cấu hình cơ bản
 
 ```sh 
-Router(config)#router eigrp eigrp_muốn_đặt ( 1->65535) 
-Router(config-router)#network IP_mạng_muốn_quảng_bá 
-Router(config-router)#no auto-summary (ko tự ghép các dải địa chỉ IP thành 1 dải lớn)
+	Router(config)#router eigrp <eigrp_muốn_đặt> ( 1->65535) 
+	Router(config-router)#network <IP_mạng_muốn_quảng_bá>
+	Router(config-router)#no auto-summary (ko tự ghép các dải địa chỉ IP thành 1 dải lớn)
 ``` 
 
 - Ví dụ:
+
 ```sh
-Router(config)# router eigrp 100                          // Bắt đầu cấu hình EIGRP, số 100 là Autonomous System (AS) number
-Router(config-router)# network 192.168.1.0                // Kích hoạt EIGRP trên mạng con 192.168.1.0
-Router(config-router)# network 10.0.0.0                   // Kích hoạt EIGRP trên mạng con 10.0.0.0
-Router(config-router)# network 172.16.0.0                  // Kích hoạt EIGRP trên mạng con 172.16.0.0
-Router(config-router)# no auto-summary 				//(ko tự ghép các dải địa chỉ IP thành 1 dải lớn)
-Router(config-router)# exit                                // Thoát khỏi chế độ cấu hình EIGRP
-Router(config)# exit                                        // Thoát khỏi chế độ cấu hình
-Router# copy running-config startup-config                   // Lưu cấu hình vào bộ nhớ non-volatile
+	Router(config)# router eigrp 100                     // Bắt đầu cấu hình EIGRP, số 100 là Autonomous System (AS) number
+	Router(config-router)# network 192.168.1.0           // Kích hoạt EIGRP trên mạng con 192.168.1.0
+	Router(config-router)# network 10.0.0.0              // Kích hoạt EIGRP trên mạng con 10.0.0.0
+	Router(config-router)# network 172.16.0.0            // Kích hoạt EIGRP trên mạng con 172.16.0.0
+	Router(config-router)# no auto-summary 			//ko tự ghép các dải địa chỉ IP thành 1 dải lớn
+	Router(config-router)# exit                     // Thoát khỏi chế độ cấu hình EIGRP
+	Router(config)# exit                                  // Thoát khỏi chế độ cấu hình
 ```
 
 > Ở ví dụ trên:
@@ -46,36 +47,45 @@ Router# copy running-config startup-config                   // Lưu cấu hình
 2. Thay đổi băng thông và tự tổng hợp tuyến trong interface
 
 ```sh
-Router(config-if)#bandwidth kilobits 
-Router(config-if)#ip summary-address protocol AS network number subnets mask 
+	Router(config-if)#bandwidth kilobits 
+	Router(config-if)#ip summary-address protocol AS network number subnets mask 
 ```
 
 3. Cân bằng tải trong EIGRP
- 
-	`Router(config-router)#variance number`
 
+```sh
+ 	Router(config-router)#variance number
+```
 4. Quảng bá default route
 
-- Cách 1:  
-`Router(config)#ip route 0.0.0.0 0.0.0.0 [interface/nexthop]` 
-`Router(config)#redistribute static`
+- Cách 1:
 
-- Cách 2:  
-`Router(config)#ip default-network network number`
+```sh 
+	Router(config)#ip route 0.0.0.0 0.0.0.0 [interface/nexthop]
+	Router(config)#redistribute static
+```
+- Cách 2:
 
-- Cách 3:  
-`Router(config-if)#ip summary-network eigrp AS number 0.0.0.0 0.0.0.0`
- 
+```sh  
+	Router(config)#ip default-network network number
+```
+
+- Cách 3:
+
+```sh  
+	Router(config-if)#ip summary-network eigrp AS number 0.0.0.0 0.0.0.0
+```
 5. Quảng bá các tuyến khác trong EIGRP (không phải là default)
 
 ```sh 
-		Router(config-router)#redistribute giao_thức_muốn_quảng_bá ID_metrics k1 k2 k3 k4 k5
+		Router(config-router)#redistribute <giao_thức_muốn_quảng_bá> <ID_metrics>
 		VD: Router(config-router)#redistribute ospf metrics 100 100 100 100 100
 ```
 6. Chia sẻ traffic trong EIGRP
 
-	`Router(config-router)#traffic share {balanced/min}`
-
+```sh
+	Router(config-router)#traffic share {balanced/min}
+```
 ## Các lệnh kiểm tra cấu hình EIGRP
 
 - `show ip protocols`: Hiển thị các thông tin tổng quan về các giao thức định tuyến đang chạy trên thiết bị, bao gồm EIGRP.
