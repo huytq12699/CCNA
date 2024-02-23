@@ -91,4 +91,4 @@
 	Router# show ip dhcp pool <pool-name>
 ```
 
-- Thay thế "<pool-name>" bằng tên của DHCP pool mà bạn muốn kiểm tra.
+- Thay thế `<pool-name>` bằng tên của DHCP pool mà bạn muốn kiểm tra.
