@@ -71,8 +71,6 @@
 
 	+ Máy chủ DNS được cấu hình là 8.8.8.8 (Google DNS).
 
-	+ Thời gian thuê địa chỉ IP là 7 ngày.
-
 	+ DHCP được kích hoạt trên cổng kết nối GigabitEthernet0/0.
 
 ## Kiểm tra cấu hình
