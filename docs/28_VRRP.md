@@ -32,6 +32,7 @@ Router(config-if)# no shut
 Router(config-if)# ip address <IP_cong> <subnet_mask>
 Router(config-if)# standby <VRRP_group> ip <IP_virtual_router>
 Router(config-if)# standby <VRRP_group> priority <value>
+Router(config-if)# standby <VRRP_group> preempt
 ```
 
 2. Router đóng vai trò `Backup`
@@ -54,6 +55,7 @@ Router(config-if)# no shut
 Router(config-if)# ip address <IP_cong> <subnet_mask>
 Router(config-if)# vrrp <VRRP_group> ip <IP_virtual_router>
 Router(config-if)# vrrp <VRRP_group> priority <value>
+Router(config-if)# vrrp <VRRP_group> preempt
 ```
 
 2. Router đóng vai trò `Backup`
@@ -86,6 +88,7 @@ R1(config-if)# no shut
 R1(config-if)# ip address 192.168.1.2 255.255.255.0
 R1(config-if)# vrrp 1 ip 192.168.1.1
 R1(config-if)# vrrp 1 priority 150
+R1(config-if)# vrrp 1 preempt
 ```
 
 - Trong cấu hình này:
@@ -115,8 +118,6 @@ R2(config-if)# vrrp 1 preempt
 	+ VRRP group là `1`.
 
 	+ Địa chỉ IP của Virtual Router là `192.168.1.1`.
-
-	+ `preempt` Router2 đóng vai trò dự phòng (Backup)
 
 3. Lưu ý
 

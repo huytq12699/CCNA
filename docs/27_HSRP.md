@@ -49,6 +49,7 @@ R1(config-if)# no shut
 R1(config-if)# ip address 192.168.1.1 255.255.255.0
 R1(config-if)# standby 1 ip 192.168.1.254
 R1(config-if)# standby 1 priority 110
+R2(config-if)# standby 1 preempt
 ```
 
 -  Trên Router R2 (standby router)
