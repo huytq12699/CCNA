@@ -27,19 +27,21 @@
 1. Router đóng vai trò `Master`
 
 ```sh
-interface <interface_name>
- ip address <IP_cong> <subnet_mask>
- standby <VRRP_group> <IP_virtual_router>
- standby <VRRP_group> priority <value>
+Router(config)# interface <interface_name>
+Router(config-if)# no shut
+Router(config-if)# ip address <IP_cong> <subnet_mask>
+Router(config-if)# standby <VRRP_group> ip <IP_virtual_router>
+Router(config-if)# standby <VRRP_group> priority <value>
 ```
 
 2. Router đóng vai trò `Backup`
 
 ```sh
-interface <interface_name>
- ip address <IP_cong> <subnet_mask>
- standby <VRRP_group> <IP_virtual_router>
- standby <VRRP_group> preempt
+Router(config)# interface <interface_name>
+Router(config-if)# no shut
+Router(config-if)# ip address <IP_cong> <subnet_mask>
+Router(config-if)# standby <VRRP_group> ip <IP_virtual_router>
+Router(config-if)# standby <VRRP_group> preempt
 ```
 
 ### VRRP version 3
@@ -47,19 +49,21 @@ interface <interface_name>
 1. Router đóng vai trò `Master`
 
 ```sh
-interface <interface_name>
- ip address <IP_cong> <subnet_mask>
- vrrp <VRRP_group> <IP_virtual_router>
- vrrp <VRRP_group> priority <value>
+Router(config)# interface <interface_name>
+Router(config-if)# no shut
+Router(config-if)# ip address <IP_cong> <subnet_mask>
+Router(config-if)# vrrp <VRRP_group> ip <IP_virtual_router>
+Router(config-if)# vrrp <VRRP_group> priority <value>
 ```
 
 2. Router đóng vai trò `Backup`
 
 ```sh
-interface <interface_name>
- ip address <IP_cong> <subnet_mask>
- vrrp <VRRP_group> <IP_virtual_router>
- vrrp <VRRP_group> preempt
+Router(config)# interface <interface_name>
+Router(config-if)# no shut
+Router(config-if)# ip address <IP_cong> <subnet_mask>
+Router(config-if)# vrrp <VRRP_group> ip <IP_virtual_router>
+Router(config-if)# vrrp <VRRP_group> preempt
 ```
 
 ### Ví dụ cụ thể
@@ -77,10 +81,11 @@ interface <interface_name>
 1. Router1 (Master)
 
 ```sh
-interface GigabitEthernet0/0
- ip address 192.168.1.2 255.255.255.0
- vrrp 1 ip 192.168.1.1
- vrrp 1 priority 150
+R1(config)# interface GigabitEthernet0/0
+R1(config-if)# no shut
+R1(config-if)# ip address 192.168.1.2 255.255.255.0
+R1(config-if)# vrrp 1 ip 192.168.1.1
+R1(config-if)# vrrp 1 priority 150
 ```
 
 - Trong cấu hình này:
@@ -96,10 +101,11 @@ interface GigabitEthernet0/0
 2. Router2 (Backup)
 
 ```sh
-interface GigabitEthernet0/0
- ip address 192.168.1.3 255.255.255.0
- vrrp 1 ip 192.168.1.1
- vrrp 1 preempt
+R2(config)#interface GigabitEthernet0/0
+R2(config-if)# no shut
+R2(config-if)# ip address 192.168.1.3 255.255.255.0
+R2(config-if)# vrrp 1 ip 192.168.1.1
+R2(config-if)# vrrp 1 preempt
 ```
 
 - Trong đó:
@@ -109,6 +115,8 @@ interface GigabitEthernet0/0
 	+ VRRP group là `1`.
 
 	+ Địa chỉ IP của Virtual Router là `192.168.1.1`.
+
+	+ `preempt` Router2 đóng vai trò dự phòng (Backup)
 
 3. Lưu ý
 
