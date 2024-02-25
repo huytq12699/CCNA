@@ -89,7 +89,7 @@ R1(config)# interface Tunnel0
 R1(config-if)# no shut
 R1(config-if)# ip address 10.1.1.1 255.255.255.0  // Đặt địa chỉ IP cho tunnel interface
 R1(config-if)# tunnel source 192.168.1.1          // Xác định địa chỉ IP của giao diện ra mạng công cộng (public interface)
-R1(config-if)#tunnel destination 203.0.113.1     // Xác định địa chỉ IP của router đích
+R1(config-if)# tunnel destination 203.0.113.1     // Xác định địa chỉ IP của router đích
 R1(config-if)# tunnel mode gre ip                  // Xác định giao thức cho tunnel là GRE và IP
 ```
 + Trên Router2:
@@ -142,5 +142,5 @@ show interface tunnel <number> status
 5. Kiểm tra lưu lượng thông qua kết nối tunnel
 
 ```sh
-show interface tunnel <number> | include <input rate | output rate>
+show interface tunnel <number> | include <input rate/output rate>
 ```
