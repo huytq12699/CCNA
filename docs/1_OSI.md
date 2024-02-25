@@ -2,7 +2,7 @@
 
 - Mô hình kết nối các hệ thống mở (OSI) là một mô hình tham chiếu dùng để mô tả cách các hệ thống mạng tương tác với nhau. Mô hình này được phát triển bởi ISO. Mô hình OSI chia quá trình truyền thông mạng thành 7 lớp, mỗi lớp có chức năng riêng biệt và các lớp này tương tác với nhau để thực hiện truyền thông dữ liệu
 
-![](../image/mo-hinh-OSI.png)
+![](../image/OSI.png)
 
 Dưới đây là danh sách các lớp trong mô hình OSI:
 
