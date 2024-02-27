@@ -12,6 +12,6 @@
 | Metric |	Không |	Có |
 | Tracking |	Có	| Có |
 | Thời gian chuyển đổi |	<1 giây | 	<1 giây |
-| Tương thích |	Tương thích với các thiết bị từ nhiều nhà cung cấp. |	Chủ yếu được triển khai trên thiết bị Cisco, tuy nhiên, nó có thể tương thích với các thiết bị khác thông qua HSRP. |
+| Tương thích |	Tương thích với các thiết bị từ nhiều nhà cung cấp. |	Chủ yếu được triển khai trên thiết bị Cisco. |
 | Độ phổ biến | Phổ biến trong môi trường kinh doanh và mạng lớn. | Phổ biến trong các mạng sử dụng thiết bị Cisco. |
 
