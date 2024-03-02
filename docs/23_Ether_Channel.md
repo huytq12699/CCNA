@@ -43,20 +43,20 @@
 - Lệnh cấu hình PAgP
 
 ```sh
-	Switch(config)# interface range <dãy các cổng>    			//Chọn các cổng thành viên
-	Switch(config-if-range)# channel-group 1 mode desirable    	//Tạo EtherChannel với PAgP <desirable | auto>
-	Switch(config)# interface port-channel 1               		//Chọn cổng EtherChannel
-	Switch(config-if)# switchport trunk encapsulation dot1q  	//Thiết lập giao thức đóng gói VLAN trên EtherChannel (nếu cần)
-	Switch(config-if)# switchport mode trunk              		//Thiết lập EtherChannel là trunk port (nếu cần)
+Switch(config)# interface range <dãy các cổng>    			//Chọn các cổng thành viên
+Switch(config-if-range)# channel-group 1 mode desirable    	//Tạo EtherChannel với PAgP <desirable | auto>
+Switch(config)# interface port-channel 1               		//Chọn cổng EtherChannel
+Switch(config-if)# switchport trunk encapsulation dot1q  	//Thiết lập giao thức đóng gói VLAN trên EtherChannel(nếu cần)
+Switch(config-if)# switchport mode trunk              		//Thiết lập EtherChannel là trunk port(nếu cần)
 ```
 - Lệnh cấu hình LACP
 
 ```sh
-	Switch(config)# interface range <dãy các cổng>    			//Chọn các cổng thành viên
-	Switch(config-if-range)# channel-group 1 mode active        //Tạo EtherChannel với LACP <active | passive>
-	Switch(config)# interface port-channel 1               		//Chọn cổng EtherChannel
-	Switch(config-if)# switchport trunk encapsulation dot1q  	//Thiết lập giao thức đóng gói VLAN trên EtherChannel (nếu cần)
-	Switch(config-if)# switchport mode trunk              		//Thiết lập EtherChannel là trunk port (nếu cần)
+Switch(config)# interface range <dãy các cổng>    			//Chọn các cổng thành viên
+Switch(config-if-range)# channel-group 1 mode active        //Tạo EtherChannel với LACP <active | passive>
+Switch(config)# interface port-channel 1               		//Chọn cổng EtherChannel
+Switch(config-if)# switchport trunk encapsulation dot1q  	//Thiết lập giao thức đóng gói VLAN trên EtherChannel(nếu cần)
+Switch(config-if)# switchport mode trunk              		//Thiết lập EtherChannel là trunk port(nếu cần)
 ```
 
 - Ví dụ sử dụng LACP
@@ -72,9 +72,9 @@
 
 ==> Ở ví dụ trên:
 
-	+ Các cổng GigabitEthernet 0/1 và 0/2 được kết hợp thành một EtherChannel với giao thức LACP và được đánh số là Port-channel 1.
++ Các cổng GigabitEthernet 0/1 và 0/2 được kết hợp thành một EtherChannel với giao thức LACP và được đánh số là Port-channel 1.
 
-	+ EtherChannel được cấu hình là trunk port và được thiết lập để đóng gói VLAN theo tiêu chuẩn 802.1Q.
++ EtherChannel được cấu hình là trunk port và được thiết lập để đóng gói VLAN theo tiêu chuẩn 802.1Q.
 
 ## Kiểm tra cấu hình
 
